@@ -14,3 +14,6 @@ alias pull='git pull'
 # tig
 alias ts='tig status'
 
+# ghc
+alias gm='ghc --make'
+
