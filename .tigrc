@@ -15,3 +15,7 @@ set ignore-space = all
 
 # 差分表示モードでコミットログ入力へ
 bind status V !git commit -v
+
+# rebase -i
+bind main R !git rebase -i %(commit)
+bind diff R !git rebase -i %(commit)
