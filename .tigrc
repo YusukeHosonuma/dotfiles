@@ -1,9 +1,6 @@
 # メインビュー
 set main-view = line-number:yes,interval=10 id date author commit-title:graph=yes,refs=yes
 
-# diff-view
-set diff-view = line-number:yes text
-
 # グラフ描画時の種別
 set line-graphics = ascii
 
