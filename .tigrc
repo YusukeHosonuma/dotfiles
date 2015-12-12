@@ -13,6 +13,9 @@ set diff-context = 6
 # 空白無視
 set ignore-space = all
 
+# git reflog
+bind generic L !git reflog
+
 # git commit -v
 bind status V !git commit -v
 
