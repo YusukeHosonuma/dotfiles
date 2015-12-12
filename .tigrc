@@ -13,9 +13,12 @@ set diff-context = 6
 # 空白無視
 set ignore-space = all
 
-# 差分表示モードでコミットログ入力へ
+# git commit -v
 bind status V !git commit -v
 
-# rebase -i
+# git commit --amend
+bind status A !git commit --amend
+
+# git rebase -i
 bind main R !git rebase -i %(commit)
 bind diff R !git rebase -i %(commit)
