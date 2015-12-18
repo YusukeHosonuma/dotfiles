@@ -1,0 +1,27 @@
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	sb = status -b
+	l5 = log --oneline -5
+	ll = log --oneline
+	dc = diff --cached
+	unstage = reset HEAD --
+	visual = !gitk
+
+[user]
+	name = Yusuke Hosonuma
+	email = tobi462@gmail.com
+[filter "hawser"]
+	clean = git hawser clean %f
+	smudge = git hawser smudge %f
+	required = true
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[push]
+	default = simple
+[core]
+	excludesfile = /Users/yusuke/.gitignore_global
