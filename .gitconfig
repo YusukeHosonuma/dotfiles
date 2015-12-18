@@ -4,6 +4,7 @@
 	br = branch
 	co = checkout
 	sb = status -b
+	cp = cherry-pick
 	l5 = log --oneline -5
 	ll = log --oneline
 	dc = diff --cached
