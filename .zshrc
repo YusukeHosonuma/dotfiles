@@ -5,7 +5,7 @@ export ZSH=/Users/yusuke/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="candy"
+ZSH_THEME="avit"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,11 +53,13 @@ plugins=(git ruby osx bundler brew rails emoji-clock)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-# Scala
-export SCALA_HOME="/usr/local/src/scala-2.11.7"
-export PATH="$PATH:$SCALA_HOME/bin"
+# MyTools
+export PATH="$HOME/bin:$PATH"
+
+# Java
+export JAVA_HOME=`/usr/libexec/java_home`
 
 # Haskell
 export HASKELL_HOME="/Users/yusuke/Library/Haskell/bin"
@@ -65,20 +67,22 @@ export PATH="$PATH:$HASKELL_HOME"
 
 # CMake
 export PATH="$PATH:/Applications/CMake.app/Contents/bin"
+export PATH="/Users/yusuke/.local/bin:$PATH"
 
-# MacPorts Installer addition on 2015-03-15_at_15:44:26: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
+# Rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
-export PATH="/Users/yusuke/bin/scala/scala-2.11.6/bin:$PATH"
+# Go
+export GOPATH=$HOME/go
+export PATH="$GOPATH/bin:$PATH"
 
-##
-# Your previous /Users/yusuke/.bash_profile file was backed up as /Users/yusuke/.bash_profile.macports-saved_2015-11-15_at_23:09:40
-##
+# PlantUML
+export PLANTUML_JAR=/usr/local/Cellar/plantuml/8053/libexec/plantuml.jar
+export GRAPHVIZ_DOT=/usr/local/Cellar/graphviz/2.40.1/bin/dot
+export TEMP=/Users/yusuke/Desktop/tmp
 
-# MacPorts Installer addition on 2015-11-15_at_23:09:40: adding an appropriate PATH variable for use with MacPorts.
-export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-# Finished adapting your PATH environment variable for use with MacPorts.
+# nodebrew
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,3 +110,35 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias hs="stack runghc"
+alias ghci="stack ghci"
+alias ghc="stack ghc"
+
+# Git
+alias co="git co"
+alias push="git push"
+alias pull="git pull"
+alias reseth="git reset --hard"
+
+# Carthage
+alias cboot="carthage bootstrap --platform iOS; r=$?; if [ $r == 0 ]; then m='Success'; else m='Failed'; fi; osascript -e 'display notification \"$m\" with title \"Carthage\"'"
+
+# hub
+function git(){hub "$@"}
+
+# ghq
+alias gh='cd $(ghq root)/$(ghq list | peco)'
+
+#=============================
+# source zsh-syntax-highlighting
+#=============================
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+export NVM_DIR="/Users/yusuke/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/yusuke/.sdkman"
+[[ -s "/Users/yusuke/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yusuke/.sdkman/bin/sdkman-init.sh"
