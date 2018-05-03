@@ -5,7 +5,7 @@ export ZSH=/Users/yusuke/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="avit"
+ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,10 +53,13 @@ plugins=(git ruby osx bundler brew rails emoji-clock)
 
 # User configuration
 
-export PATH="$HOME/.rbenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # MyTools
 export PATH="$HOME/bin:$PATH"
+
+# Ruby
+export PATH="$HOME/.rbenv/shims:$PATH"
 
 # Java
 export JAVA_HOME=`/usr/libexec/java_home`
@@ -81,9 +84,19 @@ export PLANTUML_JAR=/usr/local/Cellar/plantuml/8053/libexec/plantuml.jar
 export GRAPHVIZ_DOT=/usr/local/Cellar/graphviz/2.40.1/bin/dot
 export TEMP=/Users/yusuke/Desktop/tmp
 
+# Android
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/tools:$PATH"
+export PATH="$ANDROID_HOME/tools/bin:$PATH"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
+
+# AWS
+export PATH="$HOME/Library/Python/3.6/bin:$PATH"
+
 # nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
+source $HOME/.secret.sh
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -127,7 +140,10 @@ alias cboot="carthage bootstrap --platform iOS; r=$?; if [ $r == 0 ]; then m='Su
 function git(){hub "$@"}
 
 # ghq
-alias gh='cd $(ghq root)/$(ghq list | peco)'
+alias g='cd $(ghq root)/$(ghq list | peco)'
+
+# xcode-open
+alias xopen="xcode-open"
 
 #=============================
 # source zsh-syntax-highlighting
@@ -136,9 +152,13 @@ if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
   source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-export NVM_DIR="/Users/yusuke/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/yusuke/.sdkman"
 [[ -s "/Users/yusuke/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yusuke/.sdkman/bin/sdkman-init.sh"
+
+# redefine prompt_context for hiding user@hostname
+prompt_context () { }
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# zsh-xcode-completions
+fpath=(/usr/local/share/zsh/site-functions $fpath)
