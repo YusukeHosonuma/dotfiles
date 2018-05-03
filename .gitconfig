@@ -28,4 +28,4 @@
 [push]
 	default = simple
 [core]
-	excludesfile = /Users/yusuke/.gitignore_global
+	excludesfile = $HOME/.gitignore
