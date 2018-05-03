@@ -17,3 +17,6 @@ bind main B !@hub browse -- commit/%(commit)
 bind diff B !@hub browse -- commit/%(commit)
 bind tree B !@hub browse -- tree/%(commit)/%(directory)
 bind blob B !@hub browse -- tree/%(commit)/%(file)
+
+# open-pr
+bind main P @open-pr %(commit)

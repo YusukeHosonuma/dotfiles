@@ -62,6 +62,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # MyTools
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.ghq/github.com/YusukeHosonuma/dotfiles/sh:$PATH"
 
 # Ruby
 export PATH="$HOME/.rbenv/shims:$PATH"
