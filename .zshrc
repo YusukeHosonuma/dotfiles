@@ -1,10 +1,12 @@
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/yusuke/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -49,7 +51,10 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ruby osx bundler brew rails emoji-clock)
+plugins=(bundler git osx rake ruby zsh-syntax-highlighting zsh-completions)
+
+# zsh-completion
+autoload -U compinit && compinit -u
 
 # User configuration
 
@@ -64,9 +69,8 @@ export PATH="$HOME/.rbenv/shims:$PATH"
 # Java
 export JAVA_HOME=`/usr/libexec/java_home`
 
-# Haskell
-export HASKELL_HOME="/Users/yusuke/Library/Haskell/bin"
-export PATH="$PATH:$HASKELL_HOME"
+# Haskell Stack
+export PATH="/usr/local/Cellar/haskell-stack/1.6.3:$PATH"
 
 # CMake
 export PATH="$PATH:/Applications/CMake.app/Contents/bin"
@@ -79,24 +83,20 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export GOPATH=$HOME/go
 export PATH="$GOPATH/bin:$PATH"
 
-# PlantUML
-export PLANTUML_JAR=/usr/local/Cellar/plantuml/8053/libexec/plantuml.jar
-export GRAPHVIZ_DOT=/usr/local/Cellar/graphviz/2.40.1/bin/dot
-export TEMP=/Users/yusuke/Desktop/tmp
-
 # Android
 export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/bin:$PATH"
 export PATH="$ANDROID_HOME/tools:$PATH"
 export PATH="$ANDROID_HOME/tools/bin:$PATH"
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 
-# AWS
+# Python
 export PATH="$HOME/Library/Python/3.6/bin:$PATH"
 
-# nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+# Flutter
+export PATH="$HOME/var/flutter/bin:$PATH"
 
-source $HOME/.secret.sh
+source $HOME/.local.sh
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -113,7 +113,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -128,10 +128,21 @@ alias ghci="stack ghci"
 alias ghc="stack ghc"
 
 # Git
-alias co="git co"
+alias co="git checkout"
 alias push="git push"
 alias pull="git pull"
 alias reseth="git reset --hard"
+alias fetch="git fetch"
+alias br="git branch"
+alias gs="git status -b"
+
+alias delete-merged='git branch --merged | grep -v "*" | xargs -I{} git branch -d {}'
+
+# Hub
+alias pr='hub pull-request'
+
+# Tig
+alias ts="tig status"
 
 # Carthage
 alias cboot="carthage bootstrap --platform iOS; r=$?; if [ $r == 0 ]; then m='Success'; else m='Failed'; fi; osascript -e 'display notification \"$m\" with title \"Carthage\"'"
@@ -145,20 +156,15 @@ alias g='cd $(ghq root)/$(ghq list | peco)'
 # xcode-open
 alias xopen="xcode-open"
 
-#=============================
-# source zsh-syntax-highlighting
-#=============================
-if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-  source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# zsh-syntax-highlighting (via brew)
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/yusuke/.sdkman"
-[[ -s "/Users/yusuke/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/yusuke/.sdkman/bin/sdkman-init.sh"
+# sdkman
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-# redefine prompt_context for hiding user@hostname
-prompt_context () { }
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# zsh-xcode-completions
-fpath=(/usr/local/share/zsh/site-functions $fpath)
+prompt_context() () { }
