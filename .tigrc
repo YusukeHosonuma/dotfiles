@@ -1,20 +1,6 @@
-# メインビュー
-set main-view = line-number:yes,interval=10 id date author commit-title:graph=yes,refs=yes
-
-# グラフ描画時の種別
-set line-graphics = ascii
-
-# 下画面の比率
-set split-view-height = 80%
-
-# 差分の前後の表示行数
-set diff-context = 6
-
-# 空白無視
-set ignore-space = all
-
-# git reflog
-bind generic L !git reflog
+#
+# alias
+#
 
 # git commit -v
 bind status V !git commit -v
@@ -25,3 +11,9 @@ bind status A !git commit --amend
 # git rebase -i
 bind main R !git rebase -i %(commit)
 bind diff R !git rebase -i %(commit)
+
+# hub
+bind main B !@hub browse -- commit/%(commit)
+bind diff B !@hub browse -- commit/%(commit)
+bind tree B !@hub browse -- tree/%(commit)/%(directory)
+bind blob B !@hub browse -- tree/%(commit)/%(file)
