@@ -10,6 +10,9 @@
 	dc = diff --cached
 	unstage = reset HEAD --
 	visual = !gitk
+	pr = pull-request
+	see = browse
+	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 
 [user]
 	name = Yusuke Hosonuma
