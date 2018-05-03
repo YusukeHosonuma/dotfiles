@@ -141,6 +141,7 @@ alias pr='hub pull-request'
 
 # Tig
 alias ts="tig status"
+alias tig_review="tig --reverse -w $(git merge-base origin/master HEAD)...HEAD"
 
 # Carthage
 alias cboot="carthage bootstrap --platform iOS; r=$?; if [ $r == 0 ]; then m='Success'; else m='Failed'; fi; osascript -e 'display notification \"$m\" with title \"Carthage\"'"
