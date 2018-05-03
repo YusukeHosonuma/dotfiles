@@ -135,6 +135,7 @@ alias reseth="git reset --hard"
 alias fetch="git fetch"
 alias br="git branch"
 alias gs="git status -b"
+alias delete-merged='git branch --merged | grep -v "*" | xargs -I{} git branch -d {}'
 
 # Hub
 alias pr='hub pull-request'
