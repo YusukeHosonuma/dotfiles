@@ -97,6 +97,9 @@ export PATH="$HOME/Library/Python/3.6/bin:$PATH"
 # Flutter
 export PATH="$HOME/var/flutter/bin:$PATH"
 
+# Node.js
+export PATH=$HOME/.nodebrew/current/bin:$PATH
+
 source $HOME/.local.sh
 source $ZSH/oh-my-zsh.sh
 
