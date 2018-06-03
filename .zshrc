@@ -157,6 +157,9 @@ alias g='cd $(ghq root)/$(ghq list | peco)'
 # xcode-open
 alias xopen="xcode-open"
 
+# other
+alias tlint="npm run textlint"
+
 # zsh-syntax-highlighting (via brew)
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
