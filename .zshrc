@@ -72,6 +72,7 @@ export JAVA_HOME=`/usr/libexec/java_home`
 
 # Haskell Stack
 export PATH="/usr/local/Cellar/haskell-stack/1.6.3:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # CMake
 export PATH="$PATH:/Applications/CMake.app/Contents/bin"
@@ -157,6 +158,11 @@ alias g='cd $(ghq root)/$(ghq list | peco)'
 # xcode-open
 alias xopen="xcode-open"
 
+# Kubernetes
+alias kg="kubectl get"
+alias kd="kubectl describe"
+alias ka="kubectl apply"
+
 # other
 alias tlint="npm run textlint"
 
@@ -171,4 +177,21 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+#
+# zsh configuration
+#
+
+# prompt
 prompt_context() () { }
+PROMPT="$PROMPT
+➔  "
+
+# history search
+function peco-history-selection() {
+    BUFFER=`\\history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
