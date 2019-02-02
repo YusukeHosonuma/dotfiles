@@ -28,3 +28,5 @@
 	default = simple
 [core]
 	excludesfile = $HOME/.gitignore
+[ghq]
+    root = $HOME/go/src
