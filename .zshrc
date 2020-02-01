@@ -68,7 +68,7 @@ export PATH="$HOME/.ghq/github.com/YusukeHosonuma/dotfiles/sh:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 
 # Java
-export JAVA_HOME=`/usr/libexec/java_home`
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 # Haskell Stack
 export PATH="/usr/local/Cellar/haskell-stack/1.6.3:$PATH"
