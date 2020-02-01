@@ -30,3 +30,5 @@
 	excludesfile = $HOME/.gitignore
 [ghq]
     root = $HOME/go/src
+[rebase]
+	autosquash = true
