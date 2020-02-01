@@ -149,9 +149,6 @@ alias pr='hub pull-request'
 alias ts="tig status"
 # alias tig_review="tig --reverse -w $(git merge-base origin/master HEAD)...HEAD"
 
-# hub
-function git(){hub "$@"}
-
 # ghq
 alias g='cd $(ghq root)/$(ghq list | peco)'
 
@@ -166,7 +163,7 @@ alias ka="kubectl apply"
 # other
 alias tlint="npm run textlint"
 
-# zsh-syntax-highlighting (via brew)
+# zsh-syntax-highlighting (via Homebrew)
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # sdkman
