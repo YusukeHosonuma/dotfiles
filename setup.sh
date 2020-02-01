@@ -1,5 +1,7 @@
 #!/bin/bash
 
+brew bundle
+
 DOT_FILES=( .gitconfig .gitignore .pryrc .tigrc .vimrc .zshrc)
 
 for file in ${DOT_FILES[@]}
