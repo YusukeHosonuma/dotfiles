@@ -1,6 +1,14 @@
 #
+# View
+#
+set main-view = id date author commit-title:graph=yes,refs=yes
+
+#
 # alias
 #
+
+# copy commit hash
+bind generic y @sh -c "echo %(commit) | pbcopy"
 
 # git commit -v
 bind status V !git commit -v
@@ -9,8 +17,12 @@ bind status V !git commit -v
 bind status A !git commit --amend
 
 # git rebase -i
-bind main R !git rebase -i %(commit)
-bind diff R !git rebase -i %(commit)
+bind main I !git rebase -i %(commit)
+bind diff I !git rebase -i %(commit)
+
+# git commit --fixup
+bind main F !git commit --fixup %(commit)
+bind diff F !git commit --fixup %(commit)
 
 # hub
 bind main B !@hub browse -- commit/%(commit)
