@@ -27,8 +27,8 @@
 [push]
 	default = simple
 [core]
-	excludesfile = $HOME/.gitignore
+	excludesfile = ~/.gitignore
 [ghq]
-    root = $HOME/go/src
+    root = ~/go/src
 [rebase]
 	autosquash = true
