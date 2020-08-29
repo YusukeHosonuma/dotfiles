@@ -132,6 +132,10 @@ alias hs="stack runghc"
 alias ghci="stack ghci"
 alias ghc="stack ghc"
 
+# File
+alias ls='exa'
+alias ll='exa -ahl --git'
+
 # Git
 alias co="git checkout"
 alias push="git push"
