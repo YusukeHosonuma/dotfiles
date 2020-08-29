@@ -141,6 +141,7 @@ alias fetch="git fetch"
 alias br="git branch"
 alias gs="git status -b"
 alias delete-merged='git branch --merged | grep -v "*" | xargs -I{} git branch -d {}'
+alias my-files="git log --name-status --author='$(git config --get user.name)' | grep -E '^(A|M|D)\b' | awk '{ print \$2 }' | sort | uniq"
 
 # Hub
 alias pr='hub pull-request'
