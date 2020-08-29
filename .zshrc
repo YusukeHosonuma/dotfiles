@@ -193,3 +193,7 @@ function peco-history-selection() {
 
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
+
+# Starship
+# https://starship.rs/ja-jp/
+eval "$(starship init zsh)"
