@@ -32,3 +32,5 @@
     root = ~/go/src
 [rebase]
 	autosquash = true
+[pull]
+	ff = only

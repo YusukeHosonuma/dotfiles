@@ -180,6 +180,25 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #
+# History
+#
+# ref: https://qiita.com/turara/items/3cc916e13cf39d267acf
+#
+alias all-history="history -i 1"
+export HISTSIZE=10000
+export SAVEHIST=100000
+setopt hist_ignore_dups
+setopt hist_ignore_dups
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt hist_expand
+setopt inc_append_history
+
+#
 # zsh configuration
 #
 
