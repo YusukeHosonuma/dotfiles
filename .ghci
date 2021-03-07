@@ -1,0 +1,6 @@
+--:set prompt "λ "
+:set prompt "\ESC[32;5;208m\STXλ\ESC[m\STX "
+:set prompt-cont "| "
+
+:def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
+:set -ferror-spans -freverse-errors -fprint-expanded-synonyms
