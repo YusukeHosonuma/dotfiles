@@ -1,13 +1,17 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +55,16 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(bundler git osx rake ruby zsh-syntax-highlighting zsh-completions)
+plugins=(
+    bundler
+    git
+    osx
+    rake
+    ruby
+    zsh-autosuggestions
+    zsh-completions
+    zsh-syntax-highlighting
+)
 
 # zsh-completion
 autoload -U compinit && compinit -u
@@ -59,6 +72,9 @@ autoload -U compinit && compinit -u
 # User configuration
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# .local/bin
+export PATH="$HOME/.local/bin/:$PATH"
 
 # MyTools
 export PATH="$HOME/bin:$PATH"
@@ -68,22 +84,13 @@ export PATH="$HOME/.ghq/github.com/YusukeHosonuma/dotfiles/sh:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 
 # Java
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+# export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 # Haskell Stack
 export PATH="/usr/local/Cellar/haskell-stack/1.6.3:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-
-# CMake
-export PATH="$PATH:/Applications/CMake.app/Contents/bin"
-export PATH="/Users/yusuke/.local/bin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
-
-# Go
-export GOPATH=$HOME/go
-export PATH="$GOPATH/bin:$PATH"
 
 # Android
 export ANDROID_HOME="$HOME/Library/Android/sdk"
@@ -95,13 +102,10 @@ export PATH="$ANDROID_HOME/platform-tools:$PATH"
 # Python
 export PATH="$HOME/Library/Python/3.6/bin:$PATH"
 
-# Flutter
-export PATH="$HOME/var/flutter/bin:$PATH"
-
 # Node.js
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
-source $HOME/.local.sh
+# source $HOME/.local.sh
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -128,9 +132,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias hs="stack runghc"
-alias ghci="stack ghci"
-alias ghc="stack ghc"
+
+# Haskell
+alias haskell="stack runghc -- "
+alias ghci="stack ghci --ghci-options '-interactive-print=Text.Pretty.Simple.pPrint' --package pretty-simple -- "
 
 # File
 alias ls='exa'
@@ -155,7 +160,7 @@ alias ts="tig status"
 # alias tig_review="tig --reverse -w $(git merge-base origin/master HEAD)...HEAD"
 
 # ghq
-alias g='cd $(ghq root)/$(ghq list | peco)'
+alias g='cd $(ghq root)/$(ghq list | fzf --layout=reverse)'
 
 # xcode-open
 alias xopen="xcode-open"
@@ -207,16 +212,22 @@ prompt_context() () { }
 PROMPT="$PROMPT
 ➔  "
 
+#
 # history search
-function peco-history-selection() {
-    BUFFER=`\\history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+#
+function history-selection() {
+    BUFFER=`\\history -n 1 | tail -r  | awk '!a[$0]++' | fzf --layout=reverse`
     CURSOR=$#BUFFER
     zle reset-prompt
 }
 
-zle -N peco-history-selection
-bindkey '^R' peco-history-selection
+zle -N history-selection
+bindkey '^R' history-selection
 
 # Starship
 # https://starship.rs/ja-jp/
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+if [ -e /Users/yusuke/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/yusuke/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

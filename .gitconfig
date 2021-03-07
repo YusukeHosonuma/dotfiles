@@ -29,7 +29,7 @@
 [core]
 	excludesfile = ~/.gitignore
 [ghq]
-    root = ~/go/src
+    root = ~/ghq
 [rebase]
 	autosquash = true
 [pull]
